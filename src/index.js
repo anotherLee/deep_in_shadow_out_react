@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 //import App from './App';
 // import ClickCounter from './ClickCounter'
-import ControlPanel from './chapter-02/controlpanel_with_summary/ControlPanel'
+import ControlPanel from './chapter-03/redux_basic/view/ControlPanel'
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(<ControlPanel />, document.getElementById('root'));

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types'
+import store from "../store/Store"
 
 const buttonStyle = {
   margin: '10px'
@@ -12,10 +13,27 @@ class Counter extends Component {
 
     this.onClickIncrementButton = this.onClickIncrementButton.bind(this);
     this.onClickDecrementButton = this.onClickDecrementButton.bind(this);
+    this.onChange = this.onChange.bind(this)
 
-    this.state = {
-      count: props.initValue
+    this.state = this.getOwnState()
+  }
+
+  componentDidMount() {
+    store.subscribe(this.onChange)
+  }
+
+  componentWillUnmount() {
+    // store.unsubscribe(this.onChange)
+  }
+
+  getOwnState() {
+    return {
+      value: store.getState()[this.props.caption]
     }
+  }
+
+  onChange() {
+    this.setState(this.getOwnState())
   }
 
   onClickIncrementButton() {
@@ -48,13 +66,6 @@ class Counter extends Component {
 
 Counter.propTypes = {
   caption: PropTypes.string.isRequired,
-  initValue: PropTypes.number,
-  onUpdate: PropTypes.func
-};
-
-Counter.defaultProps = {
-  initValue: 0,
-  onUpdate: f => f //什么都不做的函数
 };
 
 export default Counter;
