@@ -3,10 +3,19 @@ import React, { Component } from 'react'
 class ClickCounter extends Component {
   constructor(props) {
     super(props)
+    console.log('constructor')
     this.onClickButton = this.onClickButton.bind(this)
     this.state = {
       count: 0
     }
+  }
+
+  componentWillMount() {
+    console.log('componentWillMount')
+  }
+
+  componentDidMount() {
+    console.log('componentDidMount')
   }
 
   onClickButton() {
@@ -17,6 +26,7 @@ class ClickCounter extends Component {
   }
 
   render() {
+    console.log('render')
     const counterStyle = {
       margin: '16px'
     }
